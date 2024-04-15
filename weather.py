@@ -1,6 +1,6 @@
 import pyowm
 
-owm = pyowm.OWM('1274ac41a43ad005924656212c7a8b6b')  
+owm = pyowm.OWM('your_api_key')  
 
 def weather_info(location):
     mgr = owm.weather_manager()
