@@ -64,7 +64,7 @@ elif "play" in text2 and "video" in text2:
 
 elif "news" in text2:
     speak("Here is the today news : ")
-    arr = fetch_news("ad8873e8f2e84c34a4cac06f8316a31d")
+    arr = fetch_news("your_api_key")
     for i in range(len(arr)):
         speak(arr[i])
         print(arr[i])
