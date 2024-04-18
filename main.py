@@ -18,6 +18,7 @@ st.set_page_config(
     page_icon=":robot_face:",
     layout="wide"
 )
+
 st.title("YOUR PERSONAL ASSISTANT")
 
 selected_page = option_menu(
@@ -51,7 +52,7 @@ if selected_page == "INFORMATION":
                          options=["Question - Answering", "Summarizer"],
                          orientation="horizontal")
     if option == "Summarizer":
-        st.write(text)
+        st.write(text[:999])
     elif option == "Question - Answering":
         qna = pipeline("question-answering")
         input_question = st.text_input("Enter the question you want to ask : ")
@@ -134,8 +135,11 @@ elif selected_page == "WEB SCROLL":
                     text2 = r.recognize_google(audio)
                     st.write(text2)
                     i = i +1
+                
+                if "nothing" in text2:
+                    speak("Thankyou")
                     
-                if "information" in text2:
+                elif "information" in text2:
                     speak("Information related to which topic")
                     with sr.Microphone() as source:
                         r.energy_threshold = 10000
@@ -148,7 +152,7 @@ elif selected_page == "WEB SCROLL":
                     assist = InfoScraper()
                     assist.get_info(infer)
                     
-                if "play" in text2 and "video" in text2:
+                elif "play" in text2 and "video" in text2:
                     speak("Which video would you like to play?")
                     with sr.Microphone() as source:
                         r.energy_threshold = 10000
@@ -163,7 +167,7 @@ elif selected_page == "WEB SCROLL":
                     
                 elif "news" in text2:
                     speak("Here is the today news : ")
-                    arr = fetch_news("your_api_key")
+                    arr = fetch_news("ad8873e8f2e84c34a4cac06f8316a31d")
                     for i in range(len(arr)):
                         speak(arr[i])
                         print(arr[i])
